@@ -8,7 +8,8 @@
                  [org.clojure/spec.alpha "0.5.238"]
                  [com.taoensso/timbre "6.5.0"]
                  [environ "1.2.0"]]
-  :plugins [[lein-environ "1.2.0"]]
+  :plugins [[lein-environ "1.2.0"]
+            [nvd-clojure "4.1.0"]]
   :main pitch-pipe.core
   :repl-options {:host "127.0.0.1"}
   :profiles
