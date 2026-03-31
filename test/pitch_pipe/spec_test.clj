@@ -52,13 +52,14 @@
     (is (s/valid? ::spec/shot-event valid-shot-event))))
 
 (deftest generative-test-valid-events
-  (testing "50 generated valid events all pass validation"
-    (let [events (repeatedly 50
-                   (fn []
-                     {:id     (str (java.util.UUID/randomUUID))
-                      :index  (inc (rand-int 100))
-                      :minute (rand-int 90)
-                      :second (rand-int 59)
-                      :type   {:id (inc (rand-int 50)) :name (rand-nth ["Pass" "Shot" "Duel" "Pressure"])}}))]
+  (testing "50 generated events from manual generators all pass validation"
+    (let [gen-event (fn []
+                      {:id     (str (java.util.UUID/randomUUID))
+                       :index  (gen/generate (gen/fmap inc (s/gen (s/int-in 0 999))))
+                       :minute (gen/generate (s/gen (s/int-in 0 90)))
+                       :second (gen/generate (s/gen (s/int-in 0 58)))
+                       :type   {:id   (gen/generate (s/gen (s/int-in 1 50)))
+                                :name (gen/generate (s/gen #{"Pass" "Shot" "Duel" "Pressure"}))}})
+          events    (repeatedly 50 gen-event)]
       (doseq [e events]
         (is (= e (spec/validate-event! e)))))))
