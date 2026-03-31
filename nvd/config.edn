@@ -1,1 +1,3 @@
-{:nvd {:fail-threshold 11}}
+{:nvd {:fail-threshold 11
+       :nvd-api {:delay 5000
+                 :max-retry-count 10}}}

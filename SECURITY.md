@@ -25,12 +25,16 @@ Please do **not** open a public GitHub issue for security vulnerabilities.
 - Every JSON event loaded from disk is validated against a `clojure.spec.alpha` schema before entering the processing pipeline.
 - Malformed events throw descriptive `ex-info` errors with `:type :pitch-pipe/spec-violation` — never silent `nil` propagation or `NullPointerException`.
 
-### Dependency scanning
-- Dependencies are scanned for known CVEs using [nvd-clojure](https://github.com/rm-hull/nvd-clojure) (`lein nvd check`).
-- Scanning is integrated into the CI/CD pipeline via GitHub Actions.
+### Dependency Scanning
 
-### Known CVE Disposition
-- As of 2026-03-31: No known CVEs in project dependencies. This section will be updated if future scans report findings.
+Dependencies are scanned using nvd-clojure 5.2.0 against the
+NIST National Vulnerability Database. Scanning runs on every
+push via GitHub Actions. The NVD API key is stored as a GitHub
+repository secret (NVD_API_TOKEN) and never committed to source.
+
+**Known CVE Disposition — as of 2026-03-31:** No known CVEs in
+project dependencies. This section will be updated if future
+scans report findings.
 
 ## StatsBomb Data Licence Obligations
 
