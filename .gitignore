@@ -1,0 +1,11 @@
+.env
+*.secret
+.creds/
+secrets/
+target/
+.nrepl-port
+*.class
+node_modules/
+.lein-repl-history
+*.jar
+*.DS_Store
