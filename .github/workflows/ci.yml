@@ -1,0 +1,45 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install Clojure CLI
+        run: |
+          curl -L -O https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh
+          chmod +x linux-install.sh
+          sudo ./linux-install.sh
+
+      - name: Install Leiningen
+        run: |
+          mkdir -p ~/.local/bin
+          curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -o ~/.local/bin/lein
+          chmod +x ~/.local/bin/lein
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          ~/.local/bin/lein version
+
+      - name: Install clj-kondo
+        run: |
+          curl -sLO https://github.com/clj-kondo/clj-kondo/releases/latest/download/clj-kondo-linux-amd64.zip
+          unzip clj-kondo-linux-amd64.zip
+          sudo mv clj-kondo /usr/local/bin/
+
+      - name: Lint
+        run: clj-kondo --lint src test
+
+      - name: Run tests
+        env:
+          STATSBOMB_DATA_PATH: ${{ github.workspace }}/test/resources
+        run: lein test
+
+      - name: Security scan
+        run: lein nvd check
