@@ -46,6 +46,6 @@ jobs:
         run: |
           clojure -J-Dclojure.main.report=stderr \
             -M -m nvd.task.check \
-            '{}' \
+            "config.edn" \
             "$(cd .. && lein classpath)"
         continue-on-error: true
