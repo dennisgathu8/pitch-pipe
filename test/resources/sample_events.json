@@ -1,0 +1,12 @@
+[
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000001", "index": 1, "minute": 0, "second": 0, "type": {"id": 35, "name": "Starting XI"}, "tactics": {"formation": 442}},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000002", "index": 2, "minute": 0, "second": 1, "type": {"id": 18, "name": "Half Start"}},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000003", "index": 3, "minute": 1, "second": 12, "type": {"id": 30, "name": "Pass"}, "location": [35.0, 22.0]},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000004", "index": 4, "minute": 5, "second": 30, "type": {"id": 42, "name": "Ball Receipt*"}, "location": [60.0, 40.0]},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000005", "index": 5, "minute": 12, "second": 45, "type": {"id": 16, "name": "Shot"}, "location": [102.0, 34.0], "shot": {"statsbomb_xg": 0.08, "end_location": [120.0, 38.0, 1.2], "outcome": {"id": 97, "name": "Goal"}}},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000006", "index": 6, "minute": 23, "second": 14, "type": {"id": 16, "name": "Shot"}, "location": [110.0, 40.0], "under_pressure": true, "shot": {"statsbomb_xg": 0.32, "end_location": [120.0, 40.0, 0.5], "outcome": {"id": 100, "name": "Saved"}}},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000007", "index": 7, "minute": 34, "second": 0, "type": {"id": 17, "name": "Pressure"}, "location": [45.0, 60.0]},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000008", "index": 8, "minute": 40, "second": 55, "type": {"id": 4, "name": "Duel"}, "location": [70.0, 15.0]},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000009", "index": 9, "minute": 55, "second": 22, "type": {"id": 16, "name": "Shot"}, "location": [95.0, 55.0], "shot": {"statsbomb_xg": 0.04, "end_location": [120.0, 42.0, 2.0], "outcome": {"id": 98, "name": "Off T"}}},
+  {"id": "a1b2c3d4-e5f6-7890-abcd-000000000010", "index": 10, "minute": 88, "second": 30, "type": {"id": 30, "name": "Pass"}, "location": [80.0, 40.0]}
+]
