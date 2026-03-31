@@ -9,3 +9,5 @@ node_modules/
 .lein-repl-history
 *.jar
 *.DS_Store
+.lein-env
+.lein-failures
