@@ -27,11 +27,30 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           ~/.local/bin/lein version
 
+      - name: Cache Leiningen dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-lein-${{ hashFiles('project.clj') }}
+          restore-keys: |
+            ${{ runner.os }}-lein-
+
+      - name: Cache Clojure CLI dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.gitlibs
+          key: ${{ runner.os }}-clj-${{ hashFiles('nvd/deps.edn') }}
+          restore-keys: |
+            ${{ runner.os }}-clj-
+
       - name: Install clj-kondo
         run: |
-          curl -sLO https://github.com/clj-kondo/clj-kondo/releases/latest/download/clj-kondo-linux-amd64.zip
-          unzip clj-kondo-linux-amd64.zip
+          CLJ_KONDO_VERSION="2025.01.16"
+          curl -sL "https://github.com/clj-kondo/clj-kondo/releases/download/v${CLJ_KONDO_VERSION}/clj-kondo-${CLJ_KONDO_VERSION}-linux-amd64.zip" \
+            -o clj-kondo.zip
+          unzip clj-kondo.zip
           sudo mv clj-kondo /usr/local/bin/
+          clj-kondo --version
 
       - name: Lint
         run: clj-kondo --lint src test
