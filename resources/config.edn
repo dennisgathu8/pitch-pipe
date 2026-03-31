@@ -1,1 +1,4 @@
-{:statsbomb-data-path "/tmp/statsbomb-open-data/data"}
+;; Non-secret default configuration for pitch-pipe.
+;; Set STATSBOMB_DATA_PATH environment variable to override.
+;; Example: export STATSBOMB_DATA_PATH="/path/to/statsbomb/open-data/data"
+{:statsbomb-data-path nil}
