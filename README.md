@@ -1,5 +1,7 @@
 # pitch-pipe 🎵⚽
 
+[![CI](https://github.com/dennisgathu8/pitch-pipe/actions/workflows/ci.yml/badge.svg)](https://github.com/dennisgathu8/pitch-pipe/actions/workflows/ci.yml)
+
 **StatsBomb ingestion + transducer pipeline for football event analytics.**
 
 ## What problem does this solve?
@@ -44,11 +46,11 @@ Football event data arrives as deeply nested JSON files with inconsistent schema
 ### Setup
 
 ```bash
-# Clone StatsBomb open data
-git clone https://github.com/statsbomb/open-data.git /tmp/statsbomb-open-data
+# Clone StatsBomb open data (choose a persistent location — /tmp is cleared on reboot)
+git clone https://github.com/statsbomb/open-data.git ~/data/statsbomb-open-data
 
 # Set the data path
-export STATSBOMB_DATA_PATH="/tmp/statsbomb-open-data/data"
+export STATSBOMB_DATA_PATH="$HOME/data/statsbomb-open-data/data"
 
 # Clone this project
 git clone https://github.com/dennisgathu8/pitch-pipe.git
