@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- Security scanning via nvd-clojure 5.2.0 (standalone Clojure CLI, separate nvd/ helper project)
 - Transducer pipeline for StatsBomb shot event enrichment
 - clojure.spec validation at JSON ingestion boundary
 - Zone computation across 18 pitch zones

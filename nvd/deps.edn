@@ -1,0 +1,2 @@
+{:deps {nvd-clojure/nvd-clojure {:mvn/version "5.2.0"}
+        org.clojure/clojure     {:mvn/version "1.12.0"}}}

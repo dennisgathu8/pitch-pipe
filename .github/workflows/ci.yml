@@ -42,5 +42,10 @@ jobs:
         run: lein test
 
       - name: Security scan
-        run: lein nvd check
+        working-directory: nvd
+        run: |
+          clojure -J-Dclojure.main.report=stderr \
+            -M -m nvd.task.check \
+            '{}' \
+            "$(cd .. && lein classpath)"
         continue-on-error: true
