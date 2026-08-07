@@ -38,7 +38,7 @@
 (defn run
   "Core entry point — can be called from REPL or CLI.
    opts map: {:match-id 3764760 :mode :shots :format :edn :replay false ...}"
-  [{:keys [match-id mode format replay once speed port] :as opts}]
+  [{:keys [match-id mode format replay once speed port] :as _opts}]
   (when-not match-id
     (throw (ex-info "match-id is required" {:type :pitch-pipe/usage-error})))
   (if replay

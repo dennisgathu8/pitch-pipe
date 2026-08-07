@@ -2,7 +2,6 @@
   "Tests for pitch-pipe.metrics — Prometheus registry and recording functions."
   (:require [clojure.test :refer [deftest is testing]]
             [pitch-pipe.metrics :as metrics]
-            [iapetos.export :as export]
             [clojure.string :as str]))
 
 (deftest metrics-recording-test
