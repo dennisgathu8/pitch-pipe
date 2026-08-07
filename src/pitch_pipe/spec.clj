@@ -54,6 +54,18 @@
          #(= "Shot" (get-in % [:type :name]))
          #(contains? % :location)))
 
+(defn validate-event
+  "Non-throwing validation of a single StatsBomb event map against ::event spec.
+   Returns {:valid? true :event event} on success, or
+   {:valid? false :event-id id :explain str} on failure.
+   Suitable for continuous replay where one bad event should not crash the run."
+  [event]
+  (if (s/valid? ::event event)
+    {:valid? true :event event}
+    {:valid? false
+     :event-id (:id event)
+     :explain  (s/explain-str ::event event)}))
+
 (defn validate-event!
   "Validates a single StatsBomb event map against ::event spec.
    Throws ex-info with :type :pitch-pipe/spec-violation on failure.
