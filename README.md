@@ -80,6 +80,39 @@ lein run --match-id 3764760 --mode all --format json
 (def shots  (pipeline/run-shot-pipeline events))
 ```
 
+## Real-time monitoring
+
+`pitch-pipe` includes a real-time monitoring simulation mode that replays historical StatsBomb match events chronologically over an http-kit server exposing Prometheus metrics.
+
+### Quickstart
+
+```bash
+# 1. Start Prometheus (port 9090) and Grafana (port 3000)
+docker compose up -d
+
+# 2. Run real-time event replay
+lein run --match-id 3764760 --mode all --replay --speed 60 --port 8081
+```
+
+### CLI Flags
+
+| Flag | Description | Default |
+|---|---|---|
+| `--match-id <id>` | StatsBomb match ID (required) | N/A |
+| `--mode shots\|all` | Pipeline processing mode | `shots` |
+| `--format edn\|json` | Output serialization format | `edn` |
+| `--replay` | Enable continuous real-time replay simulation | `false` |
+| `--once` | Run a single pass during replay (instead of looping) | `false` |
+| `--speed <n>` | Replay speed multiplier (match-sec / wall-sec) | `60.0` |
+| `--port <n>` | Port for the Prometheus metrics HTTP server | `8081` |
+
+### Starter PromQL Queries
+
+- **Throughput (events/sec):** `rate(pitch_pipe_events_processed_total[1m])`
+- **Spec validation failure rate:** `rate(pitch_pipe_spec_validation_failures_total[5m])`
+- **p95 Ingestion Lag (sec):** `histogram_quantile(0.95, rate(pitch_pipe_ingestion_lag_seconds_bucket[5m]))`
+- **Shots by pitch zone:** `sum by (zone) (pitch_pipe_shots_total)`
+
 ## Example output
 
 ```clojure
