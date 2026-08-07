@@ -11,3 +11,10 @@ node_modules/
 *.DS_Store
 .lein-env
 .lein-failures
+.clj-kondo/
+.lsp/
+clj-kondo
+clj-kondo.zip
+.cpcache/
+xtdb-data/
+statsbomb-data/

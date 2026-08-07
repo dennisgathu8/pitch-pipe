@@ -34,6 +34,22 @@
     (let [raw (json/parse-stream (io/reader file) keyword)]
       (mapv spec/validate-event! raw))))
 
+(defn load-match-events-raw
+  "Loads and parses all events for a given match-id from the
+   StatsBomb open data directory WITHOUT spec validation.
+   Returns a vector of raw event maps. Used by the replay path,
+   which validates event-by-event via spec/validate-event."
+  [match-id]
+  (let [path (clojure.string/join "/" [(data-path) "events" (clojure.string/join "" [(java.lang.String/valueOf match-id) ".json"])])
+        file (io/file path)]
+    (when-not (.exists file)
+      (throw (ex-info "Match event file not found"
+                      {:type     :pitch-pipe/file-not-found
+                       :match-id match-id
+                       :path     path})))
+    (log/info "Loading raw match events (no validation)" {:match-id match-id :path path})
+    (json/parse-stream (io/reader file) keyword)))
+
 (defn list-available-matches
   "Returns a sorted list of available match IDs (longs) from the
    events directory."

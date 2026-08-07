@@ -7,7 +7,9 @@
                  [cheshire "5.13.0"]
                  [org.clojure/spec.alpha "0.5.238"]
                  [com.taoensso/timbre "6.5.0"]
-                 [environ "1.2.0"]]
+                 [environ "1.2.0"]
+                 [clj-commons/iapetos "0.1.15"]
+                 [http-kit "2.8.0"]]
   :plugins [[lein-environ "1.2.0"]]
   :main pitch-pipe.core
   :repl-options {:host "127.0.0.1"}

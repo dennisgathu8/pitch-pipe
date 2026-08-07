@@ -47,6 +47,20 @@
         (catch clojure.lang.ExceptionInfo e
           (is (= :pitch-pipe/spec-violation (:type (ex-data e)))))))))
 
+(deftest validate-event-non-throwing-valid-case
+  (testing "Non-throwing validate-event returns {:valid? true :event event} for valid event"
+    (let [res (spec/validate-event valid-event)]
+      (is (= true (:valid? res)))
+      (is (= valid-event (:event res))))))
+
+(deftest validate-event-non-throwing-invalid-case
+  (testing "Non-throwing validate-event returns {:valid? false :event-id id :explain str} for invalid event"
+    (let [bad-event (assoc valid-event :minute 200)
+          res (spec/validate-event bad-event)]
+      (is (= false (:valid? res)))
+      (is (= "a1b2c3d4-e5f6-7890-abcd-000000000001" (:event-id res)))
+      (is (string? (:explain res))))))
+
 (deftest valid-shot-event-passes-shot-spec
   (testing "A valid shot event passes ::shot-event spec"
     (is (s/valid? ::spec/shot-event valid-shot-event))))
