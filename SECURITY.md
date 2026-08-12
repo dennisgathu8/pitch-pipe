@@ -13,7 +13,8 @@ Please do **not** open a public GitHub issue for security vulnerabilities.
 ## Security Posture
 
 ### Network exposure
-- **No network listeners.** pitch-pipe reads local JSON files and writes to stdout. It makes no outbound HTTP requests in default mode.
+- **Default mode: no network listeners.** pitch-pipe reads local JSON files and writes to stdout. It makes no outbound HTTP requests.
+- **Replay mode:** When run with `--replay`, an HTTP server (http-kit) binds to `--port` (default `8081`) on `0.0.0.0` to expose Prometheus metrics at `/metrics` and a health check at `/health`. The Docker Compose stack also runs Prometheus (port 9090) and Grafana (port 3000) with anonymous admin access enabled — intended for local development only.
 - **nREPL binds to localhost only.** The `:repl-options {:host "127.0.0.1"}` setting in `project.clj` ensures the development REPL is never exposed on public interfaces.
 
 ### Configuration and secrets

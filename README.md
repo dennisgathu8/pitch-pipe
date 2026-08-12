@@ -92,6 +92,9 @@ docker compose up -d
 
 # 2. Run real-time event replay
 lein run --match-id 3764760 --mode all --replay --speed 60 --port 8081
+
+# 3. Open Grafana — dashboards are auto-provisioned, no manual import needed
+#    http://localhost:3000  (anonymous admin, no login required)
 ```
 
 ### CLI Flags
@@ -105,6 +108,17 @@ lein run --match-id 3764760 --mode all --replay --speed 60 --port 8081
 | `--once` | Run a single pass during replay (instead of looping) | `false` |
 | `--speed <n>` | Replay speed multiplier (match-sec / wall-sec) | `60.0` |
 | `--port <n>` | Port for the Prometheus metrics HTTP server | `8081` |
+
+### Grafana Dashboards
+
+Two dashboards are auto-provisioned under the **pitch-pipe** folder when Grafana starts — no manual import needed:
+
+| Dashboard | UID | Panels |
+|---|---|---|
+| **Match Insights** | `pitchpipe-match-insights` | Cumulative xG · Shots by Zone · Event Volume (events/min) · Events by Type |
+| **Pipeline Health** | `pitchpipe-pipeline-health` | Replay Active · Throughput · Spec Validation Failure Rate · p95 Ingestion Lag · Throughput Over Time · Ingestion Lag Percentiles · Spec Validation Failures |
+
+Dashboard JSON files live in `monitoring/grafana/provisioning/dashboards/`.
 
 ### Starter PromQL Queries
 

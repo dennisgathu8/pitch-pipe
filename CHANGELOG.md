@@ -13,7 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Non-throwing boundary validation (`spec/validate-event`) returning `{:valid? true/false}` to prevent malformed stream records from crashing replay loops
 - New CLI flags: `--replay`, `--once`, `--speed`, `--port`
 - Docker Compose stack (`docker-compose.yml`, `monitoring/`) provisioning Prometheus (port 9090) and Grafana (port 3000)
-- Real-Time Monitoring documentation in README with CLI flag reference and starter PromQL queries
+- Auto-provisioned Grafana dashboards: **Match Insights** (xG, shots by zone, event volume, events by type) and **Pipeline Health** (replay status, throughput, spec validation failures, ingestion lag percentiles)
+- Real-Time Monitoring documentation in README with CLI flag reference, dashboard reference, and starter PromQL queries
 - Architecture Decision Record (`ADR-002-realtime-monitoring-prometheus.md`)
 - Security scanning via nvd-clojure 5.2.0 (standalone Clojure CLI, separate nvd/ helper project)
 - Transducer pipeline for StatsBomb shot event enrichment

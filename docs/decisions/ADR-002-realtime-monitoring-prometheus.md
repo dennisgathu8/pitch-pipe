@@ -40,6 +40,7 @@ Requirements for real-time monitoring:
 2. **Replay Simulation Engine**: Implement `pitch-pipe.replay` to simulate live feeds from local StatsBomb match files.
 3. **Non-Throwing Boundary Validation**: Introduce `spec/validate-event` returning `{:valid? true/false}` to log and count spec failures without terminating continuous replay.
 4. **Local Dev Stack**: Provide `docker-compose.yml` with Prometheus and pre-provisioned Grafana dashboards targeting `host.docker.internal:8081`.
+5. **Provisioned Dashboards**: Two auto-provisioned Grafana dashboards under the `pitch-pipe` folder — **Match Insights** (`pitchpipe-match-insights`) covering xG, shot zones, event volume, and event type breakdowns, and **Pipeline Health** (`pitchpipe-pipeline-health`) covering replay status, throughput, spec validation failure rates, and ingestion lag percentiles (p50/p95/p99).
 
 ## Consequences
 
